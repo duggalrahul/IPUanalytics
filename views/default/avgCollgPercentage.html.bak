@@ -1,0 +1,28 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
+
+{{extend 'plugin_layouts/layouts/KeepitSimple.html'}}
+
+
+<h2 class="sub-header">College ranking According to Avg. Marks</h2>
+<div class="table-responsive">    
+    <table class="table table-striped">
+         <tr>
+             <th class="col-md-1">Rank</th>
+             <th class="col-md-4">College Name</th>
+             <th class="col-md-3">Avg. Percentage</th>
+             <th class="col-md-3">Max. Percentage</th>
+             <th class="col-md-2">No. of students</th>
+         </tr>
+         {{for i,row in enumerate(rows):}}
+         <tr>
+             
+             {{=TD(i+1)}}
+             {{=TD(A(row.students.collegename, _href = '#'))}}
+             {{=TD(row['_extra']['(SUM(students.percentage) / COUNT(students.rollNo))'])}}
+             {{=TD(row['MAX(students.percentage)'])}}
+             {{=TD(row['COUNT(students.rollNo)'])}}
+         </tr>
+         {{pass}}     
+    </table>
+
+</div>

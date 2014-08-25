@@ -1,0 +1,143 @@
+import os
+import extract
+import preprocess
+
+def index():
+    return dict(rows = 'Within Index')
+
+def findPercentageByRollNo(rollNo):
+    rows = db(db.students.rollNo.contains(rollNo)).select()
+    return rows[0].percentage
+
+def findPercentageByName(name):
+    rows = db(db.students.name.contains(name)).select()
+    return rows[0].percentage
+
+
+def studentname():
+    form = FORM('Enter Your name:',
+              INPUT(_name='name', requires=IS_NOT_EMPTY(error_message='this field cannot be empty')),
+              INPUT(_type='submit'))
+    if form.process().accepted:
+        redirect(URL('default','studentSummary', args=form.vars.name.upper()))
+    
+    return dict(form=form)
+
+def studentSummary():
+    name = request.args(0,cast=str)
+    name = name.replace('_',' ')
+
+    rows = db(db.students.name.contains(name)).select()
+
+    return dict(name=name, rows = rows)
+
+def avgCollgPercentage():    
+    query = db.students.percentage.sum() / db.students.rollNo.count()
+    rows = db().select(
+                         db.students.colleges_id,   
+                         query,
+                         db.students.percentage.max(),
+                         db.students.rollNo.count(),
+                         orderby = ~query,
+                         groupby = db.students.colleges_id)  
+    return dict(rows = rows)
+
+def college():
+    
+    form = SQLFORM.factory(Field('choose_college', requires=IS_IN_DB(db, 'colleges.id', '%(name)s')), formstyle='bootstrap', _class='form-horizontal')
+
+    if form.process().accepted:
+        college_id =  form.vars.choose_college
+        redirect(URL('collegeSummary', args = college_id))
+
+    return dict(form = form)
+
+def collegeSummary():
+
+    college_id = request.args(0,cast=int)
+    name = db(db.colleges.id==college_id).select()[0]['name']
+
+    subjAvg = db(db.students.colleges_id == college_id).select(db.students.rollNo.count(), db.students.subj1.sum(),
+                                                                db.students.subj2.sum(), db.students.subj3.sum(), db.students.subj4.sum(),
+                                                                db.students.subj5.sum(), db.students.subj6.sum(), db.students.subj7.sum(),
+                                                                db.students.subj8.sum(), db.students.subj9.sum(), db.students.subj10.sum(),
+                                                                db.students.subj11.sum())
+    Avg = (subjAvg[0]['_extra']['SUM(students.subj1)'] * 1.0 / subjAvg[0]['_extra']['COUNT(students.rollNo)'],
+        subjAvg[0]['_extra']['SUM(students.subj2)'] * 1.0 / subjAvg[0]['_extra']['COUNT(students.rollNo)'],
+        subjAvg[0]['_extra']['SUM(students.subj3)'] * 1.0 / subjAvg[0]['_extra']['COUNT(students.rollNo)'],
+        subjAvg[0]['_extra']['SUM(students.subj4)'] * 1.0 / subjAvg[0]['_extra']['COUNT(students.rollNo)'],
+        subjAvg[0]['_extra']['SUM(students.subj5)'] * 1.0 / subjAvg[0]['_extra']['COUNT(students.rollNo)'],
+        subjAvg[0]['_extra']['SUM(students.subj6)'] * 1.0 / subjAvg[0]['_extra']['COUNT(students.rollNo)'],
+        subjAvg[0]['_extra']['SUM(students.subj7)'] * 1.0 / subjAvg[0]['_extra']['COUNT(students.rollNo)'],
+        subjAvg[0]['_extra']['SUM(students.subj8)'] * 1.0 / subjAvg[0]['_extra']['COUNT(students.rollNo)'],
+        subjAvg[0]['_extra']['SUM(students.subj9)'] * 1.0 / subjAvg[0]['_extra']['COUNT(students.rollNo)'],
+        subjAvg[0]['_extra']['SUM(students.subj10)'] * 1.0 / subjAvg[0]['_extra']['COUNT(students.rollNo)'],
+        subjAvg[0]['_extra']['SUM(students.subj11)'] * 1.0 / subjAvg[0]['_extra']['COUNT(students.rollNo)'])
+
+    ranks = db(db.students.colleges_id == college_id).select(orderby=~db.students.percentage)
+
+    # return dict(collegename=collegename, subjAvg = subjAvg, ranks=ranks[:5])
+    return dict(Avg = Avg, name=name, ranks=ranks[:5])
+
+    
+
+
+
+def buildDB():
+
+	# clean the data file at private/filename
+    noisy_file = os.path.join(request.folder, 'private','027__BTECH__6TH SEM.txt')
+    clean_file = os.path.join(request.folder, 'private','cleanFile.txt')
+    preprocess.cleanData(noisy_file, clean_file)
+
+
+    # extract college information
+    lines = preprocess.readFile(clean_file)
+    colleges = extract.extract_data(lines)
+
+    #insert into table colleges
+    for name in colleges.keys():
+    	db.colleges.insert(name=name)
+
+    # insert into table students
+    for name in colleges.keys():
+        for student in colleges[name].students:
+
+            credits = (4,4,4,4,4,4,1,1,1,1,1)
+            total_credits = 0
+            for i in xrange(len(credits)):
+                total_credits = total_credits + credits[i]
+
+            percentage = (credits[0]*int(student.marks[0]) + credits[1]*int(student.marks[1]) +  credits[2]*int(student.marks[2]) +
+                         credits[3]*int(student.marks[3]) + credits[4]*int(student.marks[4]) + credits[5]*int(student.marks[5]) +
+                         credits[6]*int(student.marks[6]) + credits[7]*int(student.marks[7]) + credits[8]*int(student.marks[8]) +
+                         credits[9]*int(student.marks[9]) + credits[10]*int(student.marks[10]))
+
+            percentage = (percentage * 1.0) / total_credits
+
+            if percentage < 50.0:
+                continue
+
+            collegeid = db(db.colleges.name == name).select()[0]['id']
+            db.students.insert(colleges_id = collegeid, rollNo = student.rollNo[1:], name = student.name,
+                           subj1 = int(student.marks[0]), subj2 = int(student.marks[1]), subj3 = int(student.marks[2]),
+                           subj4 = int(student.marks[3]), subj5 = int(student.marks[4]), subj6 = int(student.marks[5]),
+                           subj7 = int(student.marks[6]), subj8 = int(student.marks[7]), subj9 = int(student.marks[8]),
+                           subj10 = int(student.marks[9]), subj11 = int(student.marks[10]), percentage = percentage)
+
+    return 'db built'
+
+
+
+
+def myplot():
+    response.headers['Content-Type']='image/png'
+    return plot(data={'my plot':[(0,0),(1,1),(2,4),(3,9),(4,16),(5,20)]})
+
+def myhist():
+    response.headers['Content-Type']='image/png'
+    return hist(data={'my plot':[(0,0),(1,1),(2,4),(3,9),(4,16)]},mode='hist')
+
+def myplot2():
+    response.headers['Content-Type']='image/png'
+    return color2d(z=[[1,2,3,4],[2,3,4,5],[3,4,5,6],[4,5,6,7]])

@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title>
+   {{=response.title or request.application}}
+  </title>
+  {{#include 'web2py_ajax.html'}}
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IPUdata</title>
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href={{=URL(request.application,'static','css/bootstrap.min.css')}} rel="stylesheet" >
+    <link href={{=URL(request.application,'static','css/flexslider.css')}} rel="stylesheet" >
+    <link href={{=URL(request.application,'static','css/styles.css')}} rel="stylesheet" >
+    <link href={{=URL(request.application,'static','css/queries.css')}} rel="stylesheet" >
+    <link href={{=URL(request.application,'static','css/animate.css')}} rel="stylesheet" >
+
+  
+  </style>
+ </head>
+ <body>
+
+
+
+ <div class="navbar navbar-default">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href={{=URL('index')}}><b>IPU</b>analytics</a>
+  </div>
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href={{=URL(request.application, 'default','index')}}>Home</a></li> 
+      <li><a href={{=URL('default','studentname')}}>Student Summary</a></li>
+      <li><a href={{=URL('default','college')}}>College Summary</a></li>
+      <li><a href={{=URL('default','avgCollgPercentage')}}>College Ranking</a></li>
+      <li><a href={{=URL('default','plot')}}>University Plots</a></li>
+    </ul>
+  </div>
+</div>
+
+{{include}}
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src={{=URL(request.application,'static','js/waypoints.min.js')}}></script>
+    <script src={{=URL(request.application,'static','js/bootstrap.min.js')}}></script>
+    <script src={{=URL(request.application,'static','js/scripts.js')}}></script>
+    <script src={{=URL(request.application,'static','js/jquery.flexslider.js')}}></script>
+    <script src={{=URL(request.application,'static','js/modernizr.js')}}></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

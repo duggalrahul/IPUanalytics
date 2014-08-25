@@ -1,0 +1,17 @@
+{{extend 'plugin_layouts/layouts/KeepitSimple.html'}}
+
+
+
+<h1><center><strong>MARKS DISTRIBUTION - SUBJECTWISE</strong></center></h1>
+</br></br>
+<div class="panel panel-default">
+  <div class="panel-heading"></div>
+  <table class="table", border="1">
+    <tr>
+         <th>Histograms</th>
+         <th>Average Percentage</th>
+    </tr>
+
+    <tr><td>{{=URL('plot1.png')}}</td><td>{{=Avg[0]}}</td></tr>
+  </table>
+</div>

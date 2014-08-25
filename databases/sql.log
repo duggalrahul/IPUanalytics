@@ -1,0 +1,26 @@
+timestamp: 2014-08-23T07:36:38.738700
+CREATE TABLE colleges(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512) UNIQUE
+);
+success!
+timestamp: 2014-08-23T07:36:38.789080
+CREATE TABLE students(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    colleges_id INTEGER,
+    rollNo CHAR(512),
+    name CHAR(512),
+    subj1 INTEGER,
+    subj2 INTEGER,
+    subj3 INTEGER,
+    subj4 INTEGER,
+    subj5 INTEGER,
+    subj6 INTEGER,
+    subj7 INTEGER,
+    subj8 INTEGER,
+    subj9 INTEGER,
+    subj10 INTEGER,
+    subj11 INTEGER,
+    percentage DOUBLE
+);
+success!

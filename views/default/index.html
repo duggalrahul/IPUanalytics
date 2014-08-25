@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IPUanalytics</title>
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- <link href="css/flexslider.css" rel="stylesheet" > -->
+   <!--  <link href="css/styles.css" rel="stylesheet"> -->
+    <!-- <link href="css/queries.css" rel="stylesheet"> -->
+    <!-- <link href="css/animate.css" rel="stylesheet"> -->
+
+    <link href={{=URL(request.application,'static','css/bootstrap.min.css')}} rel="stylesheet" >
+    <link href={{=URL(request.application,'static','css/flexslider.css')}} rel="stylesheet" >
+    <link href={{=URL(request.application,'static','css/styles.css')}} rel="stylesheet" >
+    <link href={{=URL(request.application,'static','css/queries.css')}} rel="stylesheet" >
+    <link href={{=URL(request.application,'static','css/animate.css')}} rel="stylesheet" >
+
+      </head>
+      <body id="top">
+        <header id="home">
+          <nav>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+                  <nav class="pull">
+                    <ul class="top-nav">
+                      <li><a href="#intro">What is this?<span class="indicator"><i class="fa fa-angle-right"></i></span></a></li>
+                      <li><a href="#features">Features <span class="indicator"><i class="fa fa-angle-right"></i></span></a></li>                      
+                      <li><a href="#contact">Get in Touch <span class="indicator"><i class="fa fa-angle-right"></i></span></a></li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </nav>
+          <section class="hero" id="hero">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12 text-right navicon">
+                  <a id="nav-toggle" class="nav_slide_button" href="#"><span></span></a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center inner">
+                  <h1 class="animated fadeInDown">IPU<span>analytics</span></h1>
+                  <p class="animated fadeInUp delay-05s">A place for jawdropping analytics of IP University results </p>
+                </div>
+              </div>              
+            </div>
+          </section>
+        </header>
+
+        <section class="intro text-center section-padding" id="intro">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2 wp1">
+                <h1 class="arrow">An indespensible tool for Everyone</h1>
+                <p>Tired of all the searching and calculating everytime you see your results. Don't worry! We'll do it all for you. Want to see your friends' marks? or your college Average? We have it all. So hop on the bandwagon to witness the raw, powerful, number crunching performed for the first time ever, on the IP University results.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <section class="swag text-center">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <h1>Ready??</h1>
+                <a href="#portfolio" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <section class="portfolio text-center section-padding" id="portfolio">
+          <div class="container">
+            <div class="row">
+              <div id="portfolioSlider">
+                <ul class="slides">
+                  <li>
+                    <div class="col-md-4 wp4 delay-1s">
+                      <div class="overlay-effect effects clearfix">
+                        <div class="img">
+                          <img src={{=URL('static','images/studentsummary.jpg')}} alt="Portfolio Item">
+                          <div class="overlay">
+                            <a href={{=URL('default','studentname')}} class="expand"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                          </div>
+                        </div>
+                      </div>
+                      <h2>Student Summary</h2>
+                      <p>Would like to view your own marks? or your friends' marks?</p>
+                    </div>
+
+                    
+                    <div class="col-md-4 wp4 delay-05s">
+                      <div class="overlay-effect effects clearfix">
+                        <div class="img">
+                          <img src={{=URL('static','images/collegesummary.jpg')}} alt="Portfolio Item">
+                          <div class="overlay">
+                            <a href={{=URL('default','college')}} class="expand"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                          </div>
+                        </div>
+                      </div>
+                      <h2>College Summary</h2>
+                      <p>One stop shop for all the statistics of your college results</p>
+                    </div>
+
+                    <div class="col-md-4 wp4">
+                      <div class="overlay-effect effects clearfix">
+                        <div class="img">
+                          <img src={{=URL('static','images/collgrankings.jpg')}} alt="Portfolio Item">
+                          <div class="overlay">
+                            <a href={{=URL('default','avgCollgPercentage')}} class="expand"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                          </div>
+                        </div>
+                      </div>
+                      <h2>College Rankings</h2>
+                      <p>Ever wondered how your college fares w.r.t. Average marks of all students? </p>
+                    </div>
+                    
+                  </li>
+                  <li>
+                    <div class="col-md-4 wp4 delay-05s">
+                      <div class="overlay-effect effects clearfix">
+                        <div class="img">
+                          <img src={{=URL('static','images/collegesummary.jpg')}} alt="Portfolio Item">
+                          <div class="overlay">
+                            <a href={{=URL('default','college')}} class="expand"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                          </div>
+                        </div>
+                      </div>
+                      <h2>College Summary</h2>
+                      <p>One stop shop for all the statistics of your college results</p>
+                    </div>
+
+                    <div class="col-md-4 wp4">
+                      <div class="overlay-effect effects clearfix">
+                        <div class="img">
+                          <img src={{=URL('static','images/collgrankings.jpg')}} alt="Portfolio Item">
+                          <div class="overlay">
+                            <a href={{=URL('default','avgCollgPercentage')}} class="expand"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                          </div>
+                        </div>
+                      </div>
+                      <h2>College Rankings</h2>
+                      <p>Ever wondered how your college fares w.r.t. Average marks of all students? </p>
+                    </div>
+                    <div class="col-md-4 wp4 delay-1s">
+                      <div class="overlay-effect effects clearfix">
+                        <div class="img">
+                          <img src={{=URL('static','images/university.jpg')}} alt="Portfolio Item">
+                          <div class="overlay">
+                            <a href={{=URL('default','plot')}} class="expand"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                          </div>
+                        </div>
+                      </div>
+                      <h2>University Distribution</h2>
+                      <p>Finally, we quench your thirst about how your university fared!!</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <section class="dark-bg text-center section-padding contact-wrap" id="contact">
+          <a href="#top" class="up-btn"><i class="fa fa-chevron-up"></i></a>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h1 class="arrow">Drop us a suggestion</h1>
+              </div>
+            </div>
+            
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <ul class="social-buttons">
+                  <li><a href="https://www.facebook.com/rahul.duggal.35" class="social-btn"><i class="fa fa-facebook"></i></a></li>
+                  <li><a href="https://www.linkedin.com/profile/view?id=188390711&trk=nav_responsive_tab_profile_pic" class="social-btn"><i class="fa fa-linkedin"></i></a></li>
+                  <li><a href="rahulduggal2608@gmail.com" class="social-btn"><i class="fa fa-google"></i></a></li>
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        
+
+
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src={{=URL(request.application,'static','js/waypoints.min.js')}}></script>
+    <script src={{=URL(request.application,'static','js/bootstrap.min.js')}}></script>
+    <script src={{=URL(request.application,'static','js/scripts.js')}}></script>
+    <script src={{=URL(request.application,'static','js/jquery.flexslider.js')}}></script>
+    <script src={{=URL(request.application,'static','js/modernizr.js')}}></script>
+      
+      </body>
+    </html>

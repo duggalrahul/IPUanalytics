@@ -1,0 +1,52 @@
+{{extend 'plugin_layouts/layouts/KeepitSimple.html'}}
+
+{{if len(rows)==0:}}
+  <h1>Name not found in database!</h1>
+
+{{else:}}
+	<h1><center><strong>{{=name}}</strong></center></h1>
+	</br></br>
+		<div class="panel panel-default">
+		  <div class="panel-heading">Subjectwise Marks</div>
+		  <table class="table", border="1">
+		    <tr>
+		    	 <th class="col-md-1">SNo.</th>
+		    	 <th class="col-md-1">Roll No.</th>
+		    	 <th class="col-md-1">Name</th>
+		         <th class="col-md-1">TH1</th>
+		         <th class="col-md-1">TH2</th>
+		         <th class="col-md-1">TH3</th>
+		         <th class="col-md-1">TH4</th>
+		         <th class="col-md-1">TH5</th>
+		         <th class="col-md-1">TH6</th>
+		         <th class="col-md-1">PRCT1</th>
+		         <th class="col-md-1">PRCT2</th>
+		         <th class="col-md-1">PRCT3</th>
+		         <th class="col-md-1">PRCT4</th>
+		         <th class="col-md-1">PRCT5</th>
+		         <th class="col-md-1">Percentage</th>
+		    </tr>
+		    
+		    {{for i,row in enumerate(rows):}}
+		    <tr>
+		        	{{=TD(i+1)}}
+		            {{=TD(row['rollNo'])}}
+		            {{=TD(A(row['name']), _href=URL(request.application,'default','studentSummary', args=row['name']))}}
+		            {{=TD(row['subj1'])}}
+		            {{=TD(row['subj2'])}}
+		            {{=TD(row['subj3'])}}
+		            {{=TD(row['subj4'])}}
+		            {{=TD(row['subj5'])}}
+		            {{=TD(row['subj6'])}}
+		            {{=TD(row['subj7'])}}
+		            {{=TD(row['subj8'])}}
+		            {{=TD(row['subj9'])}}
+		            {{=TD(row['subj10'])}}
+		            {{=TD(row['subj11'])}}
+		            {{=TD(row['percentage'])}}
+		    </tr>
+		    {{pass}}
+		    
+		  </table>
+		</div>
+{{pass}}

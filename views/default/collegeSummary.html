@@ -1,0 +1,49 @@
+{{extend 'plugin_layouts/layouts/KeepitSimple.html'}}
+
+<h1><center><strong>{{=name}}</strong></center></h1>
+</br></br>
+<div class="panel panel-default">
+  <div class="panel-heading">Subjectwise Average Marks</div>
+  <table class="table", border="1">
+    <tr>
+         <th>TH1</th>
+         <th>TH2</th>
+         <th>TH3</th>
+         <th>TH4</th>
+         <th>TH5</th>
+         <th>TH6</th>
+         <th>PRCT1</th>
+         <th>PRCT2</th>
+         <th>PRCT3</th>
+         <th>PRCT4</th>
+         <th>PRCT5</th>
+    </tr>
+    <tr>
+        {{for avg in Avg:}}
+            {{=TD("{:.2f}".format(avg))}}
+        {{pass}}
+    </tr>
+  </table>
+</div>
+
+</br></br>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Top 5 Students</div>
+  <table class="table", border="1">
+    <tr>
+         <th>Rank</th>
+         <th>Roll No</th>
+         <th>Name</th>
+         <th>Percentage</th>
+    </tr>
+    {{for i,rank in enumerate(ranks):}}
+    <tr>
+        {{=TD(i+1)}}
+        {{=TD(ranks[i]['rollNo'])}}
+        {{=TD(A(ranks[i]['name'], _href=URL('default','studentSummary', args=ranks[i]['name'])))}}
+        {{=TD(ranks[i]['percentage'])}}
+    </tr>
+    {{pass}}
+  </table>
+</div>
